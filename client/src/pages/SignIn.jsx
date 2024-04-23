@@ -2,14 +2,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import OAuth from "../components/OAuth";
 import {
   signInStart,
   signInSuccess,
   signInFailure,
 } from "../redux/user/userSlice";
 const SignIn = () => {
-  const dispatch = useDispatch();
+  console.log(useSelector((state) => state.user));
   const { loading, error } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+
   const [formData, setFormData] = useState({});
   const navigate = useNavigate();
   const handleChange = (e) => {
@@ -60,6 +64,7 @@ const SignIn = () => {
           className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95 disabled:opacity-50">
           {loading ? "Loading..." : "Sign In"}
         </button>
+        <OAuth />
       </form>
       <div className="flex gap-2 mt-5 text-center">
         <p>Don`t have an account?</p>
